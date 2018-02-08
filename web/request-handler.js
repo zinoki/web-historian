@@ -18,7 +18,7 @@ var actions = {
       if (err) {
         throw err;
       }      
-      res.writeHeader(200, {"Content-Type": "text/html"});
+      res.writeHeader(200, {'Content-Type': 'text/html'});
       res.write(html);
       //sendResponse(res, html);
       res.end();
@@ -26,7 +26,7 @@ var actions = {
   },
 
   'POST': function(req, res) {
-    var body = "";
+    var body = '';
     req.on('data', function(data)  {
       body += data;
     });

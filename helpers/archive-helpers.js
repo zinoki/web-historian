@@ -52,8 +52,23 @@ exports.addUrlToList = function(url, callback) {
 };
 
 exports.isUrlArchived = function(url, callback) {
-  
+  var sliced = exports.slicer(url);
+  var fixturePath = exports.paths.archivedSites + '/' + url;
+  fs.open(fixturePath, 'r', function(err, fd) {
+    if(err) {
+      callback(false);
+    } else {
+      callback(true);
+    }
+  });
 };
 
 exports.downloadUrls = function(urls) {
+
+};
+
+exports.slicer = function(url) {
+  url = url.replace('www.', '');
+  url = url.replace('.com', '');
+  return url;
 };
