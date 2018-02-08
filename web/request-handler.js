@@ -9,7 +9,7 @@ var qs = require('querystring');
 exports.handleRequest = function (req, res) {
   var url = req.url;
   var method = req.method;
-  console.log(req.url, 'this is the url entered in the search bar')
+  console.log(req.url, 'this is the url entered in the search bar');
 
   if (url === '/' && method === 'GET') {
     fs.readFile(archive.paths.siteAssets, function(err, html) {
@@ -20,21 +20,21 @@ exports.handleRequest = function (req, res) {
       res.write(html);
       res.end();
     });
-} else if(method === 'POST'){
-  var body = ""
-  req.on('data', function(data) {
+  } else if(method === 'POST'){
+    var body = "";
+    req.on('data', function(data) {
+      
+      //res.writeHeader(200, {"Content-Type": "text/html"});
+      //res.write(html);
+      body += data;
     
-    //res.writeHeader(200, {"Content-Type": "text/html"});
-    //res.write(html);
-    body += data
-    
-  });
-  req.on('end', function() {
-    console.log(qs.parse(body));
-  });
-  res.writeHeader(200, {"Content-Type": "text/html"});
-  res.end();
-} else {
+    });
+    req.on('end', function() {
+      console.log(qs.parse(body));
+    });
+    res.writeHeader(200, {"Content-Type": "text/html"});
+    res.end();
+  } else {
     res.writeHeader(404, null);
     res.end();
   }
