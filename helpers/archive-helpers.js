@@ -47,10 +47,12 @@ exports.isUrlInList = function(url, callback) {
 };
 
 exports.addUrlToList = function(url, callback) {
-  
+  fs.appendFileSync(exports.paths.list, url + os.EOL);
+  callback();
 };
 
 exports.isUrlArchived = function(url, callback) {
+  
 };
 
 exports.downloadUrls = function(urls) {
