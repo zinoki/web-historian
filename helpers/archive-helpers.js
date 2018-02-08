@@ -26,7 +26,6 @@ exports.initialize = function(pathsObj) {
 
 // The following function names are provided to you to suggest how you might
 // modularize your code. Keep it clean!
-console.log(exports.paths.list, "What am i???");
 
 exports.readListOfUrls = function(callback) {
   var urls;
@@ -35,16 +34,16 @@ exports.readListOfUrls = function(callback) {
       throw err;
     }
     urls = data;
-    processUrls(callback);
-  });
-  function processUrls(callback) {
     urls = urls.split(os.EOL);
     callback(urls);
-  }
-
+  });
 };
 
 exports.isUrlInList = function(url, callback) {
+  exports.readListOfUrls(function(urls) {
+    var doesExist = _.contains(urls, url);
+    callback(doesExist);
+  });
 };
 
 exports.addUrlToList = function(url, callback) {

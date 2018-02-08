@@ -17,10 +17,7 @@ var actions = {
     fs.readFile(archive.paths.siteAssets, function(err, html) {
       if (err) {
         throw err;
-      }
-
-      // archive.readListOfUrls("more");
-      
+      }      
       res.writeHeader(200, {"Content-Type": "text/html"});
       res.write(html);
       //sendResponse(res, html);
