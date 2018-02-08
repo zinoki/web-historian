@@ -8,8 +8,8 @@ var os = require('os');
 // require more modules/folders here!
 
 // exports.handleRequest = function (req, res) {
-  // var url = req.url;
-  // var method = req.method;
+// var url = req.url;
+// var method = req.method;
   
 
 //   if (url === '/' && method === 'GET') {
@@ -66,7 +66,7 @@ var sendResponse = function(response, data, statusCode) {
   statusCode = statusCode || 200;
   response.writeHead(statusCode, headers.headers);
   response.end(JSON.stringify(data));
-}
+};
 
 var actions = {
   'GET': function(req, res) {
@@ -105,9 +105,9 @@ var actions = {
       // Write data to the file.
       fs.writeFileSync(fixturePath, fixtureName);
       sendResponse(res, null);
-    })
+    });
   }
-}
+};
 exports.handleRequest = function (req, res) {
   // var url = req.url;
   // var method = req.method;
@@ -118,4 +118,4 @@ exports.handleRequest = function (req, res) {
   } else {
     sendResponse(res, "Not Found", 404);
   }
-}
+};
