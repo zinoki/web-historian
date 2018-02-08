@@ -1,6 +1,8 @@
 var fs = require('fs');
 var path = require('path');
 var _ = require('underscore');
+var qs = require('querystring');
+var os = require('os');
 
 /*
  * You will need to reuse the same paths many times over in the course of this sprint.
@@ -24,14 +26,29 @@ exports.initialize = function(pathsObj) {
 
 // The following function names are provided to you to suggest how you might
 // modularize your code. Keep it clean!
+console.log(exports.paths.list, "What am i???");
 
 exports.readListOfUrls = function(callback) {
+  var urls;
+  fs.readFile(exports.paths.list, 'utf-8', function (err, data) {
+    if (err) {
+      throw err;
+    }
+    urls = data;
+    processUrls(callback);
+  });
+  function processUrls(callback) {
+    urls = urls.split(os.EOL);
+    callback(urls);
+  }
+
 };
 
 exports.isUrlInList = function(url, callback) {
 };
 
 exports.addUrlToList = function(url, callback) {
+  
 };
 
 exports.isUrlArchived = function(url, callback) {
